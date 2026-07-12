@@ -70,13 +70,35 @@ cd ..
 
 ## Configuration
 
-Before running, update local IP addresses in:
+### Local IP addresses
+
+If you run through `project_launcher.py`, do not manually edit the IP first. The launcher reads the saved Raspberry Pi IP, asks whether it is still correct, and updates these files for you when you answer `n`:
 
 - `Hand guidance/config.json`
 - `Nav guidance/config.yaml`
 - `Liquid Assist/config.json`
 
-Add Gemini API keys locally where needed, or use environment variables when supported. Do not commit real API keys.
+If you run a module directly without the launcher, update the Raspberry Pi IP manually in these exact locations:
+
+- `Hand guidance/config.json`, line 2: `stream_url`
+- `Nav guidance/config.yaml`, lines 3-4: `camera.source` and `camera.raw_source`
+- `Liquid Assist/config.json`, line 3: `network.raspberry_pi_ip`
+
+### Gemini API keys
+
+Do not commit real API keys. Add keys only in your local working copy or set environment variables when the module supports them.
+
+`scene/` supports environment variables, CLI input, and local config:
+
+- Preferred temporary PowerShell option: `$env:GOOGLE_API_KEY="your-key"` or `$env:GOOGLE_API_KEYS="key-1,key-2"`
+- Direct run option: `scene/main.py`, lines 53-56: `--google-api-key`
+- Local config option: `scene/config.py`, lines 1-4: `GEMINI_API_KEY` or `GEMINI_API_KEYS`
+
+`Liquid Assist/` currently reads Gemini keys from local config only:
+
+- `Liquid Assist/config.json`, line 16: add keys inside `gemini.api_keys`, for example `["key-1", "key-2"]`
+
+`Nav guidance/` and `Hand guidance/` do not use Gemini keys.
 
 ## Run
 
