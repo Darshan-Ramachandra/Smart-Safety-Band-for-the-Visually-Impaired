@@ -1,0 +1,18 @@
+{
+  "network": {
+    "raspberry_pi_ip": "192.168.214.5",
+    "laptop_ip": "0.0.0.0",
+    "udp_port": 5055,
+    "chunk_size": 60000,
+    "ack_timeout_sec": 1.0,
+    "max_retries": 10,
+    "receive_timeout_sec": 20
+  },
+  "capture": {
+    "output_filename": "received_capture.jpg"
+  },
+  "gemini": {
+    "model_name": "models/gemini-2.5-flash",
+    "api_keys": []
+  }
+}

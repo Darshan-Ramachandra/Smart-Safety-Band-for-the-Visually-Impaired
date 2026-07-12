@@ -1,0 +1,69 @@
+#To run the system
+#python run_assistive_system.py --config config.yaml  
+camera:
+  source: "udp://192.168.214.5:5000"
+  raw_source: "udp://192.168.214.5:5000"
+  width: 640
+  height: 480
+  fps: 30
+
+runtime:
+  device: "cuda"
+  use_fp16: true
+  use_fast_yolo_only: true
+  frame_skip: 3
+  segmentation_every_n: 6
+  depth_every_n: 6
+  visualize: true
+  max_latency_ms_warn: 200
+
+models:
+  yolo_weights: "weights/yolo11n.pt"
+  depth_model_path: "weights/depth-anything-small-hf"
+  segmentation_model_path: "weights/segformer-b0-ade20k"
+  local_files_only: true
+
+assist:
+  target_class: "bottle"
+  detection_classes:
+    - cup
+    - bottle
+    - book
+    - cell phone
+    - chair
+    - person
+    - dog
+    - backpack
+    - handbag
+    - laptop
+    - keyboard
+    - tv
+    - potted plant
+  danger_classes:
+    - knife
+    - scissors
+    - fork
+    - dog
+    - cat
+  speak_min_interval_sec: 1.5
+  navigation_interval_sec: 1.2
+  object_interval_sec: 1.2
+  danger_interval_sec: 0.9
+  obstacle_proximity_threshold: 0.78
+  collision_box_ratio: 0.45
+  reached_depth_threshold: 0.85
+  direction_deadband_px: 65
+  walkable_label_keywords:
+    - floor
+    - road
+    - earth
+    - sidewalk
+    - grass
+    - path
+    - ground
+
+optional_vlm:
+  enabled: false
+  ollama_url: "http://127.0.0.1:11434"
+  model_name: "qwen2.5vl:3b"
+

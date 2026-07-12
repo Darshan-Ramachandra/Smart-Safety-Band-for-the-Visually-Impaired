@@ -1,0 +1,4 @@
+{
+  "stream_url": "udp://192.168.214.5:5000?fifo_size=50000000&overrun_nonfatal=1"
+}
+

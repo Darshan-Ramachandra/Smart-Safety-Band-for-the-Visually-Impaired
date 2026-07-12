@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Local/editor files
+.vscode/
+.idea/
+*.log
+.env
+.env.*
+
+# Runtime outputs
+scene/recordings/
+Liquid Assist/received_capture.jpg
+*.tmp
+
+# Tool/cache folders
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+Nav guidance/.ultralytics/
+
+# Large model artifacts. Recreate/download these locally or use Git LFS.
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.task
+*.safetensors
+*.bin
+*.h5
+weights/
+**/weights/
